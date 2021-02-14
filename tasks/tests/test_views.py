@@ -19,7 +19,7 @@ class TaskListViewTest(TestCase):
         number_of_tasks = 20
         for task_id in range(number_of_tasks):
             Task.objects.create(
-                task_title='Task { task_id }',
+                task_title=f'Task { task_id }',
                 task_description='This is task number { task_id }. Lorem ipsum dolor sit amet, consectetur adipiscing',
             )
 
