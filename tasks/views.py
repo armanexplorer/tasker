@@ -4,7 +4,7 @@ Task app: Views file
 from django.views.generic import ListView, TemplateView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
+# from django.shortcuts import redirect
 
 from tasks.models import Task
 
