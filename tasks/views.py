@@ -4,6 +4,7 @@ Task app: Views file
 from django.views.generic import ListView, TemplateView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
+from django.shortcuts import redirect
 
 from tasks.models import Task
 
@@ -63,6 +64,15 @@ class TaskDelete(DeleteView):
     """
     model = Task
     success_url = reverse_lazy('tasks:tasks_list')
+
+
+def task_default(request):
+    """
+    this is default behavour when we hanv't id
+    """
+    #response = redirect(f'/task/{Task.objects.last().pk}')
+    #return response
+    return TaskDetails.as_view()(request, pk=Task.objects.last().pk)
 
 
 class Custom404(TemplateView):
