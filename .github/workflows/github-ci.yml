@@ -13,7 +13,7 @@ jobs:
 
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:latest
         env:
             MYSQL_DATABASE: pydjango
             MYSQL_ROOT_PASSWORD: 2458
@@ -32,18 +32,30 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install Dependencies
       run: |
+        sudo apt-get update && sudo apt-get install -y python3-dev && sudo apt-get install default-libmysqlclient-dev
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+
     - name: Pylint
       run: |
         git ls-files | grep -v 'migrations' | grep -v 'settings.py' | grep -v 'manage.py' | grep -E '.py$' |
               xargs pylint -E --load-plugins=pylint_django
+
     - name: Run Unit Tests
       run: |
         python manage.py test tasks.tests.test_models
         python manage.py test tasks.tests.test_views
+
+    - name: Run Browser Tests
+      run: |
+        sudo apt-get update && sudo apt-get install -y -qq mysql-client
+        mysql --host=0.0.0.0 -uroot -e "create database pydjango"
+        nohup python manage.py runserver 127.0.0.1:8732 &
+        python manage.py test tasks.tests.test_browser
+
     - name: Run Security Tests
       run: |
         python manage.py check --deploy --fail-level ERROR
