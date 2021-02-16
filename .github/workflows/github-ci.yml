@@ -52,7 +52,7 @@ jobs:
     - name: Run Browser Tests
       run: |
         sudo apt-get update && sudo apt-get install -y -qq mysql-client
-        mysql --host=0.0.0.0 -uroot -e "create database pydjango"
+        mysql --host=0.0.0.0 -uroot -p2458 -e "create database pydjango"
         nohup python manage.py runserver 127.0.0.1:8732 &
         python manage.py test tasks.tests.test_browser
 
