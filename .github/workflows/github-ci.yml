@@ -56,7 +56,7 @@ jobs:
     - name: Run Browser Tests
       run: |
         sudo apt-get update && sudo apt-get install -y -qq mysql-client
-        nohup python manage.py runserver 127.0.0.1:8732 &
+        nohup python manage.py runserver 127.0.0.1:8000 &
         python manage.py test tasks.tests.test_browser
 
     - name: Run Security Tests

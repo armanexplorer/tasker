@@ -24,7 +24,7 @@ class TaskListViewTest(TestCase):
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
         browser = webdriver.Chrome(chrome_options=chrome_options)
-        
+        # browser = webdriver.Chrome()
         # browser = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
 
         browser.get(SITE_URL)
