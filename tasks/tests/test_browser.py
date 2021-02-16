@@ -16,17 +16,15 @@ class TaskListViewTest(TestCase):
     """
     # Browser Integration testing with Selenium
     def test_chrome_site_homepage(self):
-        # display = Display(visible=0, size=(800, 800))
-        # display.start()
+        """
+        Simple test to check the correct loading of home page
+        """
         chrome_options = webdriver.ChromeOptions()
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--window-size=1420,1080')
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--disable-gpu')
         browser = webdriver.Chrome(chrome_options=chrome_options)
-        # browser = webdriver.Chrome()
-        # browser = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
-
         browser.get(SITE_URL)
         self.assertIn('Semaphore', browser.title)
         browser.close()
