@@ -33,12 +33,10 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-        # chromedriver-version: '88.0.4324.96'
+        chromedriver-version: '88.0.4324.96'
 
     - name: Install Dependencies
       run: |
-        wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-        sudo apt install ./google-chrome-stable_current_amd64.deb
         sudo apt-get update && sudo apt-get install -y python3-dev && sudo apt-get install default-libmysqlclient-dev
         python -m pip install --upgrade pip
         pip install -r requirements.txt
