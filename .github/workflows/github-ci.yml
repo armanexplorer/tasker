@@ -28,12 +28,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    # - uses: nanasess/setup-chromedriver@master
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
-        # chromedriver-version: '88.0.4324.96'
 
     - name: Install Dependencies
       run: |
