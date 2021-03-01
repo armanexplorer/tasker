@@ -1,3 +1,4 @@
+# Hi
 # A Semaphore demo CI/CD pipeline using Python Django
 
 Example Python Django application and CI/CD pipeline for integrating it with Semaphore 2.0.
