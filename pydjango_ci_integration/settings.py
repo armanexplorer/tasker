@@ -79,9 +79,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'pydjango_ci_integration.wsgi.application'
 
-
-DEPLOY = os.getenv('DATABASE_URL', None)
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -101,6 +98,7 @@ DATABASES = {
     }
 }
 
+DEPLOY = os.getenv('DATABASE_URL', None)
 if DEPLOY is not None:
     # Heroku: Update database configuration from $DATABASE_URL.
     import dj_database_url
