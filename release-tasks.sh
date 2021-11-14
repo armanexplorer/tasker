@@ -1,1 +1,1 @@
-memcached &
+echo "end of running custom commands as 'release' tag in 'Procfile'"
