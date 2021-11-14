@@ -4,6 +4,7 @@ Task app: Views file
 from django.views.generic import ListView, TemplateView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
+from django.http import HttpResponse
 # from django.shortcuts import redirect
 
 from tasks.models import Task
@@ -87,3 +88,8 @@ class Custom500(TemplateView):
     Task list Custom 500 View
     """
     template_name = 'tasks/500.html'
+
+def fake_view(request):
+    from django.core.cache import cache
+    cache.set('ali', 1)
+    return HttpResponse(cache.get('ali'))

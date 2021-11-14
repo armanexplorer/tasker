@@ -25,4 +25,5 @@ urlpatterns = [
     path('task/', views.task_default, name='default_task'),
     path('edit/<int:pk>', views.TaskUpdate.as_view(), name='tasks_edit'),
     path('delete/<int:pk>', views.TaskDelete.as_view(), name='tasks_delete'),
+    path('fake/', views.fake_view, name='fake_view'),
 ]

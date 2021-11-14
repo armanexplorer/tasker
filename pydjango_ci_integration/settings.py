@@ -87,23 +87,30 @@ WSGI_APPLICATION = 'pydjango_ci_integration.wsgi.application'
 # db_from_env = dj_database_url.config(conn_max_age=500)
 # DATABASES['default'].update(db_from_env)
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.mysql'),
+#         'NAME': os.getenv('DB_NAME', 'pydjango'),
+#         'USER': os.getenv('DB_USER', 'root'),
+#         'PASSWORD': os.getenv('DB_PASSWORD', '2458'),
+#         'HOST': os.getenv('DB_HOST', '127.0.0.1'),
+#         'PORT': os.getenv('DB_PORT', '3306')
+#     }
+# }
+
+import dj_database_url
+db_from_env = dj_database_url.config(conn_max_age=500, default="sqlite:///db2.sqlite3")
+
 DATABASES = {
-    'default': {
-        'ENGINE': os.getenv('DB_ENGINE', 'django.db.backends.mysql'),
-        'NAME': os.getenv('DB_NAME', 'pydjango'),
-        'USER': os.getenv('DB_USER', 'root'),
-        'PASSWORD': os.getenv('DB_PASSWORD', '2458'),
-        'HOST': os.getenv('DB_HOST', '127.0.0.1'),
-        'PORT': os.getenv('DB_PORT', '3306')
-    }
+    'default': db_from_env
 }
 
-DEPLOY = os.getenv('DATABASE_URL', None)
-if DEPLOY is not None:
-    # Heroku: Update database configuration from $DATABASE_URL.
-    import dj_database_url
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
+# DEPLOY = os.getenv('DATABASE_URL', None)
+# if DEPLOY is not None:
+#     # Heroku: Update database configuration from $DATABASE_URL.
+#     import dj_database_url
+#     db_from_env = dj_database_url.config(conn_max_age=500)
+#     DATABASES['default'].update(db_from_env)
 
 
 # DATABASES = {
@@ -164,3 +171,11 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.PyMemcacheCache',
+        'LOCATION': '127.0.0.1:11211',
+    }
+}
