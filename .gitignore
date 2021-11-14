@@ -111,3 +111,6 @@ venv.bak/
 
 # Static files
 static
+
+# custom
+db.json
