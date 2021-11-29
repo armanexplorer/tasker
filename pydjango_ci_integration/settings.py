@@ -70,7 +70,7 @@ WSGI_APPLICATION = 'pydjango_ci_integration.wsgi.application'
 # Database
 
 import dj_database_url
-db_from_env = dj_database_url.config(conn_max_age=500, default="sqlite:///db2.sqlite3")
+db_from_env = dj_database_url.config(conn_max_age=500, default="sqlite:///db.sqlite3")
 
 DATABASES = {
     'default': db_from_env

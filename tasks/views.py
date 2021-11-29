@@ -15,21 +15,18 @@ class TaskList(ListView):
     Task list Generic List View
     """
     model = Task
-    # ordering = ['-task_created']
 
     def get_context_data(self, **kwargs):
         context = super(TaskList, self).get_context_data(**kwargs)
         context.update({'nlink': 'list'})
         return context
 
-    # def render_to_response(self, context, **response_kwargs):
-    #     super(TaskList, self).render_to_response()
-
 
 class TaskCreate(CreateView, ListView):
     """
     Task list Generic Create View
     """
+    object_list = Task.objects.all()
     model = Task
     fields = ['task_title', 'task_description']
     success_url = reverse_lazy('tasks:tasks_list')
@@ -38,6 +35,11 @@ class TaskCreate(CreateView, ListView):
         context = super(TaskCreate, self).get_context_data(**kwargs)
         context.update({'nlink': 'new'})
         return context
+
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+        form.fields['task_title'].required = True
+        return form
 
 
 class TaskDetails(DetailView, ListView):
@@ -53,6 +55,7 @@ class TaskUpdate(UpdateView, ListView):
     """
     Task list Update View
     """
+    object_list = Task.objects.all()
     model = Task
     fields = ['task_title', 'task_description']
     success_url = reverse_lazy('tasks:tasks_list')
@@ -76,7 +79,7 @@ def task_default(request):
     """
     this is default behaviour when there is no id
     """
-    return TaskDetails.as_view()(request, pk=Task.objects.last().pk)
+    return TaskDetails.as_view()(request, pk=Task.objects.first().pk)
 
 
 class Custom404(TemplateView):
