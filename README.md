@@ -1,4 +1,5 @@
 # Tasker: A Simple fully djnago web application to manage tasks
+Click here to see the [tasker demo](https://wiki-task.herokuapp.com/)
 
 # Local project setup
    ```
