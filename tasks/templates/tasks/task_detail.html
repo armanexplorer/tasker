@@ -10,8 +10,10 @@
                 <p>{{ object.task_description }}</p>
                 <footer class="blockquote-footer">Created at: {{ object.task_created }} <cite title="Source Title">Updated at: {{ object.task_updated }}</cite></footer>
             </blockquote>
-            <a href="{% url 'tasks:tasks_list' %}" class="fa-link icons-back-link"><span class="glyphicon glyphicon-home"></span>
-                Go back to Task List page </a>
+{#            <a href="{% url 'tasks:tasks_list' %}" class="fa-link icons-back-link">#}
+{#                <span class="glyphicon glyphicon-home"></span>#}
+{#                Go back to Task List page#}
+{#            </a>#}
         </div>
     </div>
 {% endblock content %}

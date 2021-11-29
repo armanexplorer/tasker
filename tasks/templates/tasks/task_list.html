@@ -2,17 +2,28 @@
 
 {% block content %}
   {% if object_list %}
-    <h4>All tasks</h4>
+{#    <h4>All tasks</h4>#}
     {% for task in object_list %}
-      <div class="card" style="width: 25rem;">
-        <div class="card-body">
+        <a href="{% url 'tasks:tasks_view' task.id %}">
+      <div class="card bg-light rounded shadow mb-2 border-secondary" style="width: 25rem;">
+        <div class="card-body in-list">
           <h5 class="card-title">{{ task.task_title }}</h5>
-          <p class="card-text">{{ task.task_description }}</p>
-          <a href="{% url 'tasks:tasks_view' task.id %}" class="card-link">View Task</a>
-          <a href="{% url 'tasks:tasks_edit' task.id %}" class="card-link">Update Task</a>
-          <a href="{% url 'tasks:tasks_delete' task.id %}" class="card-link">Delete Task</a>
+          <p class="card-text mb-4">{{ task.task_description }}</p>
+          <a href="{% url 'tasks:tasks_view' task.id %}" class="card-link">
+              View
+              <span class="material-icons">import_contacts</span>
+          </a>
+          <a href="{% url 'tasks:tasks_edit' task.id %}" class="card-link">
+              Edit
+              <span class="material-icons">edit</span>
+          </a>
+          <a href="{% url 'tasks:tasks_delete' task.id %}" class="card-link">
+              Delete
+              <span class="material-icons">delete</span>
+          </a>
         </div>
       </div>
+        </a>
     {% endfor %}
   {% else %}
     <div class="row">
@@ -23,7 +34,7 @@
           <h2>
             No tasks Found</h2>
           <div class="error-actions">
-            <a href="{% url 'tasks:tasks_new' %}" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-home"></span>
+            <a href="{% url 'tasks:tasks_new' %}" class="btn btn-custom btn-lg"><span class="glyphicon glyphicon-home"></span>
               Create new task </a>
           </div>
         </div>
